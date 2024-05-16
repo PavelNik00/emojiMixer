@@ -13,6 +13,7 @@
 		E9A6D3452BF5532B00F553E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9A6D3442BF5532B00F553E4 /* Assets.xcassets */; };
 		E9A6D3482BF5532B00F553E4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E9A6D3472BF5532B00F553E4 /* Base */; };
 		E9A6D3502BF65F1400F553E4 /* EmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6D34F2BF65F1400F553E4 /* EmojiCollectionViewCell.swift */; };
+		E9A6D3522BF6652100F553E4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E9A6D3512BF6652100F553E4 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E9A6D3472BF5532B00F553E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9A6D3492BF5532B00F553E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9A6D34F2BF65F1400F553E4 /* EmojiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewCell.swift; sourceTree = "<group>"; };
+		E9A6D3512BF6652100F553E4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 		E9A6D32F2BF5532900F553E4 = {
 			isa = PBXGroup;
 			children = (
+				E9A6D3512BF6652100F553E4 /* README.md */,
 				E9A6D33A2BF5532900F553E4 /* EmojiMixer */,
 				E9A6D3392BF5532900F553E4 /* Products */,
 			);
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9A6D3522BF6652100F553E4 /* README.md in Resources */,
 				E9A6D3452BF5532B00F553E4 /* Assets.xcassets in Resources */,
 				E9A6D3482BF5532B00F553E4 /* Base in Resources */,
 			);
