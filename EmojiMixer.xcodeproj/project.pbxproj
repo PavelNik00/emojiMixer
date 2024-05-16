@@ -10,9 +10,9 @@
 		E9A6D33C2BF5532900F553E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6D33B2BF5532900F553E4 /* AppDelegate.swift */; };
 		E9A6D33E2BF5532900F553E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6D33D2BF5532900F553E4 /* SceneDelegate.swift */; };
 		E9A6D3402BF5532900F553E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6D33F2BF5532900F553E4 /* ViewController.swift */; };
-		E9A6D3432BF5532900F553E4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E9A6D3422BF5532900F553E4 /* Base */; };
 		E9A6D3452BF5532B00F553E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9A6D3442BF5532B00F553E4 /* Assets.xcassets */; };
 		E9A6D3482BF5532B00F553E4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E9A6D3472BF5532B00F553E4 /* Base */; };
+		E9A6D3502BF65F1400F553E4 /* EmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6D34F2BF65F1400F553E4 /* EmojiCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +20,10 @@
 		E9A6D33B2BF5532900F553E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9A6D33D2BF5532900F553E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E9A6D33F2BF5532900F553E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E9A6D3422BF5532900F553E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9A6D3442BF5532B00F553E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9A6D3472BF5532B00F553E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9A6D3492BF5532B00F553E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9A6D34F2BF65F1400F553E4 /* EmojiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,7 @@
 				E9A6D33B2BF5532900F553E4 /* AppDelegate.swift */,
 				E9A6D33D2BF5532900F553E4 /* SceneDelegate.swift */,
 				E9A6D33F2BF5532900F553E4 /* ViewController.swift */,
-				E9A6D3412BF5532900F553E4 /* Main.storyboard */,
+				E9A6D34F2BF65F1400F553E4 /* EmojiCollectionViewCell.swift */,
 				E9A6D3442BF5532B00F553E4 /* Assets.xcassets */,
 				E9A6D3462BF5532B00F553E4 /* LaunchScreen.storyboard */,
 				E9A6D3492BF5532B00F553E4 /* Info.plist */,
@@ -127,7 +127,6 @@
 			files = (
 				E9A6D3452BF5532B00F553E4 /* Assets.xcassets in Resources */,
 				E9A6D3482BF5532B00F553E4 /* Base in Resources */,
-				E9A6D3432BF5532900F553E4 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,20 +140,13 @@
 				E9A6D3402BF5532900F553E4 /* ViewController.swift in Sources */,
 				E9A6D33C2BF5532900F553E4 /* AppDelegate.swift in Sources */,
 				E9A6D33E2BF5532900F553E4 /* SceneDelegate.swift in Sources */,
+				E9A6D3502BF65F1400F553E4 /* EmojiCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E9A6D3412BF5532900F553E4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E9A6D3422BF5532900F553E4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E9A6D3462BF5532B00F553E4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +289,6 @@
 				INFOPLIST_FILE = EmojiMixer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -325,7 +316,6 @@
 				INFOPLIST_FILE = EmojiMixer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
