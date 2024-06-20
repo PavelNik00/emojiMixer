@@ -7,20 +7,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class EmojiMixViewController: UIViewController {
 
+    private let emojiMixFactory = EmojiMixFactory()
+    private let emojiMixStore = EmojiMixStore()
+
+    private var visibleEmojiMixes: [EmojiMix] = []
+    
     let collectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(EmojiCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         
         return collectionView
     }()
     
     
     private var emoji = [String]()
-//    private let emoji = [ "🍇", "🍈", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎", "🍏", "🍐", "🍒", "🍓", "🫐", "🥝", "🍅", "🫒", "🥥", "🥑", "🍆", "🥔", "🥕", "🌽", "🌶️", "🫑", "🥒", "🥬", "🥦", "🧄", "🧅", "🍄"]
     
     private let addButton = UIButton()
     private let undoButton = UIButton()
@@ -30,7 +35,7 @@ class ViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        collectionView.register(EmojiCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+//        collectionView.register(EmojiCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         
         view.addSubview(collectionView)
         setupCollectionView()
@@ -58,23 +63,48 @@ class ViewController: UIViewController {
         collectionView.delegate = self
     }
 
+    // создаем новый микс эмодзи при нажатии на клавишу +
+    @objc func addNewEmojiMix() {
+        let newMix = emojiMixFactory.makeNewMix()
+        
+        let newMixIndex = visibleEmojiMixes.count
+        visibleEmojiMixes.append(newMix) // добавляем микс в visibleEmojuMixes
+        
+        // обновляем коллекцию
+        collectionView.performBatchUpdates {
+            collectionView.insertItems(at: [IndexPath(item: newMixIndex, section: 0)])
+        }
+    }
+    
+    @objc func removeNewEmojiMix() {
+        let newMix = emojiMixFactory.makeNewMix()
+        
+        let newMixIndex = visibleEmojiMixes.count - 1
+        visibleEmojiMixes.removeLast()
+        
+        collectionView.performBatchUpdates {
+            collectionView.deleteItems(at: [IndexPath(item: newMixIndex, section: 0)])
+        }
+    }
+    
     func setupAddButton() {
         
         addButton.setTitle("+", for: .normal)
         addButton.setTitleColor(.white, for: .normal)
         addButton.backgroundColor = .systemBlue
         
-        addButton.addAction(UIAction(title: "+", handler: { [weak self] _ in
-            // Массив доступных эмозди
-            let availableEmoji: [String] = [ "🍇", "🍈", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎", "🍏", "🍐", "🍒", "🍓", "🫐", "🥝", "🍅", "🫒", "🥥", "🥑", "🍆", "🥔", "🥕", "🌽", "🌶️", "🫑", "🥒", "🥬", "🥦", "🧄", "🧅", "🍄"]
-            
-            // Произвольно выберем эмодзи из массива
-            let selectedEmoji = (0..<1).map { _ in availableEmoji[Int.random(in: 0..<availableEmoji.count)] }
-            
-            // Добавим выбранные эмодзи в коллекцию
-            self?.add(emoji: selectedEmoji)
-        }), for: .touchUpInside)
-        
+        addButton.addTarget(self, action: #selector(addNewEmojiMix), for: .touchUpInside)
+//        addButton.addAction(UIAction(title: "+", handler: { [weak self] _ in
+//            // Массив доступных эмозди
+//            let availableEmoji: [String] = [ "🍇", "🍈", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎", "🍏", "🍐", "🍒", "🍓", "🫐", "🥝", "🍅", "🫒", "🥥", "🥑", "🍆", "🥔", "🥕", "🌽", "🌶️", "🫑", "🥒", "🥬", "🥦", "🧄", "🧅", "🍄"]
+//            
+//            // Произвольно выберем эмодзи из массива
+//            let selectedEmoji = (0..<1).map { _ in availableEmoji[Int.random(in: 0..<availableEmoji.count)] }
+//
+//            // Добавим выбранные эмодзи в коллекцию
+//            self?.add(emoji: selectedEmoji)
+//        }), for: .touchUpInside)
+//        
         addButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -92,9 +122,11 @@ class ViewController: UIViewController {
         undoButton.setTitleColor(.white, for: .normal)
         undoButton.backgroundColor = .systemBlue
         
-        undoButton.addAction(UIAction(title: "Undo", handler: { [weak self] _ in
-            self?.removeLastEmoji()
-        }), for: .touchUpInside)
+        undoButton.addTarget(self, action: #selector(removeNewEmojiMix), for: .touchUpInside)
+
+//        undoButton.addAction(UIAction(title: "Undo", handler: { [weak self] _ in
+//            self?.removeLastEmoji()
+//        }), for: .touchUpInside)
         
         undoButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -130,25 +162,42 @@ class ViewController: UIViewController {
             collectionView.deleteItems(at: [indexes]) // удаляем элемент из collView по этому индеку пути
         }
     }
+    
+    // метод для вычисления цвета фона
+    func makeColor(_ emojis: (String, String, String)) -> UIColor {
+         func cgfloat256(_ t: String) -> CGFloat {
+              let value = t.unicodeScalars.reduce(Int(0)) { r, t in
+                 return r + Int(t.value)
+             }
+             return CGFloat(value % 128) / 255.0 + 0.25
+         }
+         return UIColor(
+             red: cgfloat256(emojis.0),
+             green: cgfloat256(emojis.1),
+             blue: cgfloat256(emojis.2),
+             alpha: 1
+         )
+    }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension EmojiMixViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return emoji.count
+        return visibleEmojiMixes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? EmojiCollectionViewCell
         
-        cell?.label.text = emoji[indexPath.row]
-        cell?.contentView.backgroundColor = .white
+        let emojiMix = visibleEmojiMixes[indexPath.row]
+        cell?.label.text = emojiMix.emoji
+        cell?.contentView.backgroundColor = emojiMix.backgroundColor
         
         return cell!
     }
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension EmojiMixViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width / 2, height: 50)
     }
