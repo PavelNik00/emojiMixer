@@ -8,6 +8,11 @@
 import CoreData
 import UIKit
 
+enum EmojiMixStoreError: Error {
+    case decodingErrorInvalidEmojies
+    case decodingErrorInvalidColorHex
+}
+
 final class EmojiMixStore {
     
     private let context: NSManagedObjectContext
@@ -24,6 +29,12 @@ final class EmojiMixStore {
         self.init(context: context)
     }
     
+    func fetchEmojiMixes() throws -> [EmojiMix] {
+        let fetchRequest = EmojiMixCoreData.fetchRequest()
+        let emojiMixesFromCoreData = try context.fetch(fetchRequest)
+        return try emojiMixesFromCoreData.map { try self.emojiMix(from: $0) }
+    }
+    
     func addNewEmojiMix(_ emojiMix: EmojiMix) throws {
         // создаем новый емоздимикскордата
         let emojiMixCoreData = EmojiMixCoreData(context: context)
@@ -34,5 +45,18 @@ final class EmojiMixStore {
     func updateExistingEmojiMix(_ emojiMixCoreData: EmojiMixCoreData, with mix: EmojiMix) {
         emojiMixCoreData.emojis = mix.emoji
         emojiMixCoreData.colorHex = uiColorMarshalling.hexString(from: mix.backgroundColor)
+    }
+    
+    func emojiMix(from emojiMixCoreData: EmojiMixCoreData) throws -> EmojiMix {
+        guard let emojis = emojiMixCoreData.emojis else {
+            throw EmojiMixStoreError.decodingErrorInvalidEmojies
+        }
+        guard let colorHex = emojiMixCoreData.colorHex else {
+            throw EmojiMixStoreError.decodingErrorInvalidEmojies
+        }
+        return EmojiMix(
+            emoji: emojis,
+            backgroundColor: uiColorMarshalling.color(from: colorHex)
+        )
     }
 }

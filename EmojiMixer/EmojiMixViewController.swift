@@ -45,6 +45,8 @@ class EmojiMixViewController: UIViewController {
  
         view.addSubview(undoButton)
         setupUndoButton()
+        
+        visibleEmojiMixes = try! emojiMixStore.fetchEmojiMixes()
     }
     
     func setupCollectionView() {
@@ -64,13 +66,14 @@ class EmojiMixViewController: UIViewController {
     }
 
     // создаем новый микс эмодзи при нажатии на клавишу +
-    @objc func addNewEmojiMix() {
+    @objc
+    private func addNewEmojiMix() {
         let newMix = emojiMixFactory.makeNewMix()
-        
+
         let newMixIndex = visibleEmojiMixes.count
-        visibleEmojiMixes.append(newMix) // добавляем микс в visibleEmojuMixes
-        
-        // обновляем коллекцию
+        try! emojiMixStore.addNewEmojiMix(newMix)
+        visibleEmojiMixes = try! emojiMixStore.fetchEmojiMixes()
+
         collectionView.performBatchUpdates {
             collectionView.insertItems(at: [IndexPath(item: newMixIndex, section: 0)])
         }
@@ -178,6 +181,8 @@ class EmojiMixViewController: UIViewController {
              alpha: 1
          )
     }
+    
+    
 }
 
 extension EmojiMixViewController: UICollectionViewDataSource {
