@@ -46,7 +46,8 @@ class EmojiMixViewController: UIViewController {
         view.addSubview(undoButton)
         setupUndoButton()
         
-        visibleEmojiMixes = try! emojiMixStore.fetchEmojiMixes()
+        emojiMixStore.delegate = self
+        visibleEmojiMixes = emojiMixStore.emojiMixes // обновление данных
     }
     
     func setupCollectionView() {
@@ -72,11 +73,11 @@ class EmojiMixViewController: UIViewController {
 
         let newMixIndex = visibleEmojiMixes.count
         try! emojiMixStore.addNewEmojiMix(newMix)
-        visibleEmojiMixes = try! emojiMixStore.fetchEmojiMixes()
+//        visibleEmojiMixes = try! emojiMixStore.fetchEmojiMixes()
 
-        collectionView.performBatchUpdates {
-            collectionView.insertItems(at: [IndexPath(item: newMixIndex, section: 0)])
-        }
+//        collectionView.performBatchUpdates {
+//            collectionView.insertItems(at: [IndexPath(item: newMixIndex, section: 0)])
+//        }
     }
     
     @objc func removeNewEmojiMix() {
@@ -181,8 +182,31 @@ class EmojiMixViewController: UIViewController {
              alpha: 1
          )
     }
-    
-    
+}
+
+extension EmojiMixViewController: EmojiMixStoreDelegate {
+    func store(_ store: EmojiMixStore, didUpdate update: EmojiMixStoreUpdate) {
+        visibleEmojiMixes = emojiMixStore.emojiMixes
+        collectionView.performBatchUpdates {
+            let insertedIndexPaths = update.insertedIndexes.map { IndexPath(item: $0, section: 0) }
+            let deletedIndexPaths = update.deletedIndexes.map { IndexPath(item: $0, section: 0) }
+            let updatedIndexPaths = update.updatedIndexes.map { IndexPath(item: $0, section: 0) }
+            collectionView.insertItems(at: insertedIndexPaths)
+            collectionView.insertItems(at: deletedIndexPaths)
+            collectionView.insertItems(at: updatedIndexPaths)
+            for move in update.movedIndexes {
+                collectionView.moveItem(
+                    at: IndexPath(item: move.oldIndex, section: 0),
+                    to: IndexPath(item: move.newIndex, section: 0)
+                )
+            }
+        }
+    }
+}
+
+extension EmojiMixViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
 }
 
 extension EmojiMixViewController: UICollectionViewDataSource {

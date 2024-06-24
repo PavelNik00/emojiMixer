@@ -52,8 +52,9 @@
 		E9A6D32F2BF5532900F553E4 = {
 			isa = PBXGroup;
 			children = (
-				E9DB9CE92C2469AC005409B3 /* Model.xcdatamodeld */,
 				E9A6D3512BF6652100F553E4 /* README.md */,
+				E9A6D33B2BF5532900F553E4 /* AppDelegate.swift */,
+				E9A6D33D2BF5532900F553E4 /* SceneDelegate.swift */,
 				E9A6D33A2BF5532900F553E4 /* EmojiMixer */,
 				E9A6D3392BF5532900F553E4 /* Products */,
 			);
@@ -70,19 +71,42 @@
 		E9A6D33A2BF5532900F553E4 /* EmojiMixer */ = {
 			isa = PBXGroup;
 			children = (
-				E9A6D33B2BF5532900F553E4 /* AppDelegate.swift */,
-				E9A6D33D2BF5532900F553E4 /* SceneDelegate.swift */,
-				E9DB9D142C24A441005409B3 /* EmojiMix.swift */,
-				E9DB9D0F2C249FD6005409B3 /* EmojiMixStore.swift */,
-				E9DB9D112C24A215005409B3 /* EmojiMixFactory.swift */,
-				E9A6D33F2BF5532900F553E4 /* EmojiMixViewController.swift */,
-				E9A6D34F2BF65F1400F553E4 /* EmojiCollectionViewCell.swift */,
+				E9DB9D202C2A063C005409B3 /* UI */,
+				E9DB9D212C2A064C005409B3 /* Domain */,
+				E9DB9D222C2A0652005409B3 /* CoreData */,
 				E9A6D3442BF5532B00F553E4 /* Assets.xcassets */,
 				E9A6D3462BF5532B00F553E4 /* LaunchScreen.storyboard */,
 				E9A6D3492BF5532B00F553E4 /* Info.plist */,
-				E9DB9D162C24A4B5005409B3 /* UIColorMarshalling.swift */,
 			);
 			path = EmojiMixer;
+			sourceTree = "<group>";
+		};
+		E9DB9D202C2A063C005409B3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E9A6D33F2BF5532900F553E4 /* EmojiMixViewController.swift */,
+				E9A6D34F2BF65F1400F553E4 /* EmojiCollectionViewCell.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E9DB9D212C2A064C005409B3 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				E9DB9D142C24A441005409B3 /* EmojiMix.swift */,
+				E9DB9D0F2C249FD6005409B3 /* EmojiMixStore.swift */,
+				E9DB9D112C24A215005409B3 /* EmojiMixFactory.swift */,
+				E9DB9D162C24A4B5005409B3 /* UIColorMarshalling.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		E9DB9D222C2A0652005409B3 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E9DB9CE92C2469AC005409B3 /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,8 +409,7 @@
 				E9DB9CEA2C2469AC005409B3 /* Model.xcdatamodel */,
 			);
 			currentVersion = E9DB9CEA2C2469AC005409B3 /* Model.xcdatamodel */;
-			name = Model.xcdatamodeld;
-			path = /Users/pavel/Swift/EmojiMixer/Model.xcdatamodeld;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
