@@ -7,13 +7,12 @@
 
 import UIKit
 
+// модель
 final class EmojiMixFactory {
-    
-    // метод для генерации случайных трех эмодзи из массива
     func makeNewMix() -> EmojiMix {
         let emojies = make3RandomEmojies()
         return EmojiMix(
-            emoji: "\(emojies.0)\(emojies.1)\(emojies.2)",
+            emojies: "\(emojies.0)\(emojies.1)\(emojies.2)",
             backgroundColor: makeColor(emojies)
         )
     }
@@ -24,7 +23,6 @@ final class EmojiMixFactory {
         "🫑", "🥒", "🥬", "🥦", "🧄", "🧅", "🍄",
     ]
 
-    // получение 3 рандомных эмодзи
     private func make3RandomEmojies() -> (String, String, String) {
         let first = emojies.randomElement()!
         let second = emojies.randomElement()!
@@ -32,7 +30,6 @@ final class EmojiMixFactory {
         return (first, second, third)
     }
 
-    // метод для генерации цвета бекганунда у ячейки с выбранными эмодзи
     private func makeColor(_ emojies: (String, String, String)) -> UIColor {
         func cgfloat256(_ t: String) -> CGFloat {
             let value = t.unicodeScalars.reduce(Int(0)) { r, t in
@@ -48,5 +45,6 @@ final class EmojiMixFactory {
         )
     }
 }
+
 
 

@@ -2,6 +2,6 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="EmojiMixCoreData" representedClassName="EmojiMixCoreData" syncable="YES" codeGenerationType="class">
         <attribute name="colorHex" optional="YES" attributeType="String"/>
-        <attribute name="emojis" optional="YES" attributeType="String"/>
+        <attribute name="emojies" optional="YES" attributeType="String"/>
     </entity>
 </model>

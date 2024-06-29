@@ -7,8 +7,9 @@
 
 import UIKit
 
-// структура для хранения микса и цвета фона
+// Модель - структура для хранения микса и цвета фона
 struct EmojiMix {
-    let emoji: String
+    let emojies: String
     let backgroundColor: UIColor
 }
+

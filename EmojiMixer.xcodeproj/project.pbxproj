@@ -19,6 +19,8 @@
 		E9DB9D122C24A215005409B3 /* EmojiMixFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB9D112C24A215005409B3 /* EmojiMixFactory.swift */; };
 		E9DB9D152C24A441005409B3 /* EmojiMix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB9D142C24A441005409B3 /* EmojiMix.swift */; };
 		E9DB9D172C24A4B5005409B3 /* UIColorMarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB9D162C24A4B5005409B3 /* UIColorMarshalling.swift */; };
+		E9FE67B82C3057A500DFFAFC /* EmojiMixViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE67B72C3057A500DFFAFC /* EmojiMixViewModel.swift */; };
+		E9FE67BC2C305C9300DFFAFC /* EmojiMixesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE67BB2C305C9300DFFAFC /* EmojiMixesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,9 @@
 		E9DB9D112C24A215005409B3 /* EmojiMixFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMixFactory.swift; sourceTree = "<group>"; };
 		E9DB9D142C24A441005409B3 /* EmojiMix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMix.swift; sourceTree = "<group>"; };
 		E9DB9D162C24A4B5005409B3 /* UIColorMarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorMarshalling.swift; sourceTree = "<group>"; };
+		E9FE67B72C3057A500DFFAFC /* EmojiMixViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMixViewModel.swift; sourceTree = "<group>"; };
+		E9FE67BB2C305C9300DFFAFC /* EmojiMixesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMixesViewModel.swift; sourceTree = "<group>"; };
+		E9FE67BD2C30911200DFFAFC /* MVVC_logic.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MVVC_logic.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				E9A6D3512BF6652100F553E4 /* README.md */,
+				E9FE67BD2C30911200DFFAFC /* MVVC_logic.md */,
 				E9A6D33B2BF5532900F553E4 /* AppDelegate.swift */,
 				E9A6D33D2BF5532900F553E4 /* SceneDelegate.swift */,
 				E9A6D33A2BF5532900F553E4 /* EmojiMixer */,
@@ -71,26 +77,26 @@
 		E9A6D33A2BF5532900F553E4 /* EmojiMixer */ = {
 			isa = PBXGroup;
 			children = (
-				E9DB9D202C2A063C005409B3 /* UI */,
-				E9DB9D212C2A064C005409B3 /* Domain */,
-				E9DB9D222C2A0652005409B3 /* CoreData */,
-				E9A6D3442BF5532B00F553E4 /* Assets.xcassets */,
-				E9A6D3462BF5532B00F553E4 /* LaunchScreen.storyboard */,
 				E9A6D3492BF5532B00F553E4 /* Info.plist */,
+				E9DB9D202C2A063C005409B3 /* View */,
+				E9FE67B92C3057B000DFFAFC /* ViewModel */,
+				E9DB9D212C2A064C005409B3 /* Model */,
+				E9DB9D222C2A0652005409B3 /* CoreData */,
+				E9FE67BA2C3058DB00DFFAFC /* Supporting Files */,
 			);
 			path = EmojiMixer;
 			sourceTree = "<group>";
 		};
-		E9DB9D202C2A063C005409B3 /* UI */ = {
+		E9DB9D202C2A063C005409B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				E9A6D33F2BF5532900F553E4 /* EmojiMixViewController.swift */,
 				E9A6D34F2BF65F1400F553E4 /* EmojiCollectionViewCell.swift */,
 			);
-			path = UI;
+			path = View;
 			sourceTree = "<group>";
 		};
-		E9DB9D212C2A064C005409B3 /* Domain */ = {
+		E9DB9D212C2A064C005409B3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				E9DB9D142C24A441005409B3 /* EmojiMix.swift */,
@@ -98,7 +104,7 @@
 				E9DB9D112C24A215005409B3 /* EmojiMixFactory.swift */,
 				E9DB9D162C24A4B5005409B3 /* UIColorMarshalling.swift */,
 			);
-			path = Domain;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E9DB9D222C2A0652005409B3 /* CoreData */ = {
@@ -107,6 +113,24 @@
 				E9DB9CE92C2469AC005409B3 /* Model.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E9FE67B92C3057B000DFFAFC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E9FE67B72C3057A500DFFAFC /* EmojiMixViewModel.swift */,
+				E9FE67BB2C305C9300DFFAFC /* EmojiMixesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E9FE67BA2C3058DB00DFFAFC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9A6D3442BF5532B00F553E4 /* Assets.xcassets */,
+				E9A6D3462BF5532B00F553E4 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,12 +206,14 @@
 			files = (
 				E9A6D3402BF5532900F553E4 /* EmojiMixViewController.swift in Sources */,
 				E9A6D33C2BF5532900F553E4 /* AppDelegate.swift in Sources */,
+				E9FE67BC2C305C9300DFFAFC /* EmojiMixesViewModel.swift in Sources */,
 				E9DB9CEB2C2469AC005409B3 /* Model.xcdatamodeld in Sources */,
 				E9DB9D152C24A441005409B3 /* EmojiMix.swift in Sources */,
 				E9DB9D102C249FD6005409B3 /* EmojiMixStore.swift in Sources */,
 				E9DB9D122C24A215005409B3 /* EmojiMixFactory.swift in Sources */,
 				E9A6D33E2BF5532900F553E4 /* SceneDelegate.swift in Sources */,
 				E9DB9D172C24A4B5005409B3 /* UIColorMarshalling.swift in Sources */,
+				E9FE67B82C3057A500DFFAFC /* EmojiMixViewModel.swift in Sources */,
 				E9A6D3502BF65F1400F553E4 /* EmojiCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
